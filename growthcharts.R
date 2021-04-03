@@ -1,7 +1,10 @@
 # growthcharts.R ----
-library(ggplot2)
+library(tidyverse)
+library(lubridate)
+library(magrittr)
 library(ggthemes)
 library(childsds)
+
 data_path <- setwd('..')
 
 # data sources ----
@@ -33,7 +36,7 @@ ggplot(wfa_girls_scaled, aes(x = measure_date)) +
   geom_line(data=wfa_baby, aes(y= weight), size=0.75, colour="black") +
   geom_point(data=wfa_baby, aes(y= weight), size=3, colour="black") +
   theme_bw() +
-  labs(x=NULL,y="Weight (Kg)",title="Alice's growth chart") +
+  labs(x=NULL,y="Weight (Kg)",title="My baby's growth chart") +
   annotate(geom="text", x=current_details$measure_date-weeks(2), y=3.1, label=paste0(birth_percentile,"th percentile at birth")) +
   annotate(geom="text", x=current_details$measure_date-weeks(2), y=2.9, label=paste0(current_percentile,"th percentile currently"))
 
